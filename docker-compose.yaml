@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+    nginx:
+      image: nginx:latest
+      container_name: nginx
+      ports:
+        - target: 80
+          published: 80
+          protocol: tcp
+      volumes:
+        - type: bind
+          source: ./nginx/nginx.conf
+          target: /etc/nginx/nginx.conf
+      depends_on:
+        - client
+
+    client:
+      image: stratcastor/yu-gi-crud:latest
+      ports:
+        - target: 5000
+      build: .
+      container_name: yu-gi-crud
+      environment:
+        - MYSQL_USER=root
+        - MYSQL_PWD=Dickfox96
+        - MYSQL_IP=35.246.48.37
+        - MYSQL_DB=card_game
+        - MYSQL_SK=sefhnslkdjcvihsemfvk
+
+
+...
+
