@@ -11,12 +11,12 @@ def home():
 	return render_template('home.html', title='D&D Gen', char_names=query)
 
 @app.route('/login', methods=['GET','POST'])
-def login():
+def login(char_name):
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = user.query.filter_by(char_name=form.char_name.data).first()
+        user = user.query.filter_by(char_name=char_name).first()
         if user and pw.verify_password(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
@@ -24,17 +24,27 @@ def login():
                 return redirect(next_page)
             else:
                 return redirect(url_for('character'))
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form, character=char_name)
 
 @app.route("/logout")
 @login_required
 def logout():
 	logout_user()
-	return redirect(url_for('login'))
+	return redirect(url_for('home'))
 
 @app.route('/new-character', methods=['GET','POST'])
 def new_char():
 
+
 @app.route('/character', methods=['GET','POST'])
 @login_required
 def display_char():
+    current_user.char_name
+    current_user.health
+    current_user.strength
+    current_user.dexterity
+    current_user.constitution
+    current_user.intelligence
+    current_user.wisdom
+    current_user.charisma
+    current_user.background

@@ -5,10 +5,6 @@ from application.models import user, background, skill
 from application import login_manager, password_hash as pw
 
 class LoginForm(FlaskForm):
-    char_name = StringField('Character name: ',
-        validators=[DataRequired(message=None), Length(min=2, max=30)
-        ]    
-    )
     password = PasswordField('Password: ',
         validators=[DataRequired(message=None), Length(min=5, max=30)
         ]    
@@ -115,6 +111,7 @@ class NewChar2(FlaskForm):
         ]
     )
     submit = SubmitField('Confirm')
+
     def validate(self):
         result = True
         seen = set()

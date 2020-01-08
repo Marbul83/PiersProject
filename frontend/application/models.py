@@ -4,6 +4,7 @@ from flask_login import UserMixin
 class user(db.model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     char_name = db.Column(db.String(30), nullable=False, unique=True)
+    race = db.Column(db.String(30), nullable=False)
     health = db.Column(db.Integer)
     strength = db.Column(db.Integer)
     dexterity = db.Column(db.Integer)
@@ -18,6 +19,7 @@ class user(db.model, UserMixin):
     def __repr__(self):
         return ''.join(['Char ID: ', str(self.id), '\r\n',
             'Name: ', self.char_name, '\r\n',
+            'race: ', self.race, '\r\n',
             'max health: ', str(self.health), '\r\n',
             'strength: ', str(self.strength), '\r\n',
             'dexterity: ', str(self.dexterity), '\r\n',
@@ -25,7 +27,7 @@ class user(db.model, UserMixin):
             'intelligence: ', str(self.intelligence), '\r\n',
             'wisdom: ', str(self.wisdom), '\r\n',
             'charisma: ', str(self.charisma), '\r\n',
-            'background? ', self.background, '\r\n',
+            'background: ', self.background, '\r\n',
             'feat list: ', self.feats
         ])
     
