@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, Response, request
 from flask_login import login_user, current_user, logout_user, login_required
 from application import app, db, password_hash as pw
-from application.forms import LoginForm, NewChar1, NewChar2
+from application.forms import LoginForm, NewChar1, NewChar2, PasswordForm
 from application.models import user, background, feat
 
 @app.route('/')
@@ -32,44 +32,57 @@ def logout():
 	logout_user()
 	return redirect(url_for('home'))
 
-@app.route('/new-character/<page>', methods=['GET','POST'])
-def new_char(page):
-    if page == 1:
-        form=NewChar1
-        if form.validate_on_submit():
-            char_name=form.char_name
-            race=form.race
-            char_class=form.char_class
-            return redirect(url_for('new-character', page=2))
-        return render_template('new_char1.html', title='New Character', form=form)
-    if page == 2:
-        form=NewChar2
-        if form.validate_on_submit():
-            strength=form.strength
-            dexterity=form.dexterity
-            constitution=form.constitution
-            intelligence=form.intelligence
-            wisdom=form.wisdom
-            charisma=form.charisma
-            return redirect(url_for('new-character', page=3))
-        return render_template('new_char2.html', title='New Character', form=form)
-    if page == 3:
-        query=feat.query.filter_by(name, effects).all()
-        #skills
-        #random roll requests
-        #send to back end
+@app.route('/new-character', methods=['GET','POST'])
+def new_char():
+    form=NewChar1
+    new_char={}
+    if form.validate_on_submit():
+        char_name=form.char_name
+        race=form.race
+        char_class=form.char_class
+        form2=NewChar2
+        if form2.validate_on_submit():
+            strength=form2.strength
+            dexterity=form2.dexterity
+            constitution=form2.constitution
+            intelligence=form2.intelligence
+            wisdom=form2.wisdom
+            charisma=form2.charisma
 
+            new_char={"char_name"=char_name, "race"=race, "char_class"=char_class,
+            "strength"=strength, "dexterity"=dexterity, "constitution"=constitution,
+            "intelligence"=intelligence, "wisdom"=wisdom, "charisma"=charisma, "feats"=""}
+
+            return redirect(url_for('feats', char=new_char))
+        return render_template('new_char2.html', title='New Character', form=form2)
+    return render_template('new_char1.html', title='New Character', form=form)
+
+@app.route('/feats/<char>')
+def feats(char):
+    query = feat.query.filter_by(id, name, effects).all()
+    return render_template('feats.html', title='Feats', feats=query, character=char)
+
+@app.route('/submit/<feat>/<character>', methods=['GET','POST'])
+def submit():
+    character.feats=feat
+
+    #random roll apps
+    #send to back end
 
 @app.route('/character', methods=['GET','POST'])
 @login_required
 def display_char():
     return render_template('DisplayChar.html', title=current_user.char_name, user=current_user)
-    #current_user.char_name
-    #current_user.health
-    #current_user.strength
-    #current_user.dexterity
-    #current_user.constitution
-    #current_user.intelligence
-    #current_user.wisdom
-    #current_user.charisma
-    #current_user.background
+
+@app.route("/change_password", methods=['GET','POST'])
+@login_required
+def change_password():
+	form = PasswordForm()
+	if form.validate_on_submit():
+		if pw.verify_password(current_user.password, form.current_password.data):
+			hash = pw.hash_password(form.password.data)
+			current_user.password = hash
+			db.session.commit()
+			return redirect(url_for('account'))
+	else:
+		return render_template('change_password.html', title='Change Password', form=form)

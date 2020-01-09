@@ -5,6 +5,7 @@ class user(db.model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     char_name = db.Column(db.String(30), nullable=False, unique=True)
     race = db.Column(db.String(30), nullable=False)
+    char_class = db.Column(db.String(30), nullable=False, unique=True)
     health = db.Column(db.Integer)
     strength = db.Column(db.Integer)
     dexterity = db.Column(db.Integer)

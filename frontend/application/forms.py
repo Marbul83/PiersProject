@@ -123,3 +123,19 @@ class NewChar2(FlaskForm):
             else:
                 seen.add(field.data)
         return result
+
+class PasswordForm(FlaskForm):
+    current_password = PasswordField('Current Password', 
+        validators=[DataRequired()
+        ]
+    )
+    password = PasswordField('Password', 
+        validators=[DataRequired()
+        ]
+    )
+    confirm_pass = PasswordField('Password', 
+        validators=[DataRequired(), 
+            EqualTo('password')
+        ]
+    )
+    submit = SubmitField('Confirm Password')
