@@ -43,6 +43,5 @@ class background(db.model):
 class feat(db.model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False, unique=True)
-    requirements = db.Column(db.String(30), nullable=False)
     effects = db.Column(db.String(300), nullable=False)
     stat-modify = db.Column(db.String(30))

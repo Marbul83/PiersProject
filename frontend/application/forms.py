@@ -19,7 +19,7 @@ class NewChar1(FlaskForm):
     )
     race = SelectField(
         'Race: ',
-        choices=[
+        choices=[            
             ('Human','Human'), 
             ('Elf','Elf'), 
             ('Dwarf','Dwarf'), 
