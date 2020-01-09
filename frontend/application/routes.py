@@ -63,11 +63,14 @@ def feats(char):
     return render_template('feats.html', title='Feats', feats=query, character=char)
 
 @app.route('/submit/<feat>/<character>', methods=['GET','POST'])
-def submit():
+def submit(feat, character):
     character.feats=feat
-
+    skill_dice=request.post('http://service1:5001/')
+    background=request.post('http://service2:5002/')
     #random roll apps
     #send to back end
+
+    #redirect to /character
 
 @app.route('/character', methods=['GET','POST'])
 @login_required
@@ -83,6 +86,6 @@ def change_password():
 			hash = pw.hash_password(form.password.data)
 			current_user.password = hash
 			db.session.commit()
-			return redirect(url_for('account'))
+			return redirect(url_for('character'))
 	else:
 		return render_template('change_password.html', title='Change Password', form=form)

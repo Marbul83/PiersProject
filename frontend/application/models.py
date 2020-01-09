@@ -21,6 +21,7 @@ class user(db.model, UserMixin):
         return ''.join(['Char ID: ', str(self.id), '\r\n',
             'Name: ', self.char_name, '\r\n',
             'race: ', self.race, '\r\n',
+            'class: ', self.char_class, '\r\n',
             'max health: ', str(self.health), '\r\n',
             'strength: ', str(self.strength), '\r\n',
             'dexterity: ', str(self.dexterity), '\r\n',

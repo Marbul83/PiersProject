@@ -1,3 +1,10 @@
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: "generate key pair"
+    openssh_keypair:
+      path: ~/.ssh/ansible_id_rsa
+
 - name: Install Docker
   hosts: all
   become: true
@@ -15,6 +22,7 @@
       - gnupg2
       - software-properties-common
       - python3-pip
+      - git
       state: latest
       update_cache: true
   - name: docker
@@ -141,3 +149,21 @@
       owner: jenkins
       group: jenkins
       mode: u=rw,g=,o=
+
+- name: Docker Swarm deploy
+  hosts: swarm-master
+  become: true
+  tasks:
+    - name: Git clone project
+      git:
+        repo: 'https://github.com/PCMBarber/PiersProject.git'
+        dest: /home/jenkins/PiersProject
+    - name: Init a new swarm
+      docker_swarm:
+        state: present
+    - name: Deploy stack from a compose file
+      docker_stack:
+        state: present
+        name: DnD Character Gen
+        compose:
+          - /home/jenkins/PiersProject.docker-compose.yaml
