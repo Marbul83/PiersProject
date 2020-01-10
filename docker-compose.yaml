@@ -22,7 +22,7 @@ services:
       environment:
         - MYSQL_USER=${MYSQL_USER}
         - MYSQL_PWD=${MYSQL_PWD}
-        - MYSQL_IP=${MYSQL_IP}
+        - MYSQL_IP=35.189.94.24
         - MYSQL_DB=${MYSQL_DB}
         - MYSQL_SK=${MYSQL_SK}
         - MYSQL_TEST_DB=${MYSQL_TEST_DB}
