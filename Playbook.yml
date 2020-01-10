@@ -27,7 +27,10 @@
       update_cache: true
   - name: docker
     pip:
-      name: docker 
+      name: docker
+  - name: json
+    pip:
+      name: jsondiff
   - name: docker gpg key
     apt_key:
       url: "https://download.docker.com/linux/debian/gpg"
@@ -166,4 +169,4 @@
         state: present
         name: DnD Character Gen
         compose:
-          - /home/jenkins/PiersProject.docker-compose.yaml
+          - /home/jenkins/PiersProject/docker-compose.yaml
