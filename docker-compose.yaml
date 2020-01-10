@@ -16,8 +16,8 @@ services:
         - service2
         - back-end
 
-    front-end:
-      image: jenkins:5000/front-end:build-0
+    frontend:
+      image: jenkins:5000/frontend:build-0
       build: ./frontend
       ports:
         - target: 5000
@@ -41,8 +41,8 @@ services:
       ports:
         - target: 5002
 
-    back-end:
-      image: jenkins:5000/back-end:build-0
+    backend:
+      image: jenkins:5000/backend:build-0
       build: ./backend
       ports:
         - target: 5003
