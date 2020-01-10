@@ -79,7 +79,7 @@ def submit(feat, character):
 
     request={"Char":character,"Dice":skill_dice}
 
-    char_complete=request.post=('http://backend:5003/',json=request)
+    char_complete=request.post=('http://back-end:5003/',json=request)
 
     form = CreatePasswordForm()
     if form.validate_on_submit():
