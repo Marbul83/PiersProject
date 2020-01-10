@@ -21,6 +21,7 @@
       - curl
       - gnupg2
       - software-properties-common
+      - python3-pip
       - python-pip
       - git
       state: latest
@@ -31,6 +32,9 @@
   - name: json
     pip:
       name: jsondiff
+  - name: yaml
+    pip:
+      name: pyyaml
   - name: docker gpg key
     apt_key:
       url: "https://download.docker.com/linux/debian/gpg"
@@ -167,6 +171,6 @@
     - name: Deploy stack from a compose file
       docker_stack:
         state: present
-        name: DnD Character Gen
+        name: DnDCharacterGen
         compose:
           - /home/jenkins/PiersProject/docker-compose.yaml
