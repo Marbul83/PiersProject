@@ -12,9 +12,6 @@ services:
           target: /etc/nginx/nginx.conf
       depends_on:
         - frontend
-        - service1
-        - service2
-        - backend
 
     frontend:
       image: jenkins:5000/frontend:build-0
