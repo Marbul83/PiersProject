@@ -11,10 +11,10 @@ services:
           source: ./nginx/nginx.conf
           target: /etc/nginx/nginx.conf
       depends_on:
-        - front-end
+        - frontend
         - service1
         - service2
-        - back-end
+        - backend
 
     frontend:
       image: jenkins:5000/frontend:build-0
