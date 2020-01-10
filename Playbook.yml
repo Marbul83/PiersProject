@@ -135,7 +135,7 @@
           - "5000:5000"
 
 - name: Install docker public ssh key
-  hosts: swarm-master
+  hosts: swarmmaster
   become: true
   tasks:
   - name: ssh folder
@@ -154,7 +154,7 @@
       mode: u=rw,g=,o=
 
 - name: Docker Swarm deploy
-  hosts: swarm-master
+  hosts: swarmmaster
   become: true
   tasks:
     - name: Git clone project
