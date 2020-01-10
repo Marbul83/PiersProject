@@ -21,6 +21,7 @@ services:
       build: ./frontend
       ports:
         - target: 5000
+          published: 5000
       environment:
         - MYSQL_USER=${MYSQL_USER}
         - MYSQL_PWD=${MYSQL_PWD}
@@ -34,17 +35,20 @@ services:
       build: ./randapp1
       ports:
         - target: 5001
+          published: 5001
       
     service2:
       image: jenkins:5000/rand2:build-0
       build: ./randapp2
       ports:
         - target: 5002
+          published: 5002
 
     backend:
       image: jenkins:5000/backend:build-0
       build: ./backend
       ports:
         - target: 5003
+          published: 5003
       
 

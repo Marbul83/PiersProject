@@ -60,8 +60,7 @@ def new_char2(char_name, race, char_class):
         new_char={"char_name":char_name, "race":race, "char_class":char_class,
         "strength":strength, "dexterity":dexterity, "constitution":constitution,
         "intelligence":intelligence, "wisdom":wisdom, "charisma":charisma, "feats":""} 
-        return new_char
-        #return redirect(url_for('feats', char=new_char))
+        return redirect(url_for('feats', char=new_char))
     return render_template('new_char2.html', title='New Character', form=form)
 
 
@@ -79,7 +78,7 @@ def submit(feat, character):
 
     request={"Char":character,"Dice":skill_dice}
 
-    char_complete=request.post=('http://back-end:5003/',json=request)
+    char_complete=request.post('http://backend:5003/', json=request)
 
     form = CreatePasswordForm()
     if form.validate_on_submit():
