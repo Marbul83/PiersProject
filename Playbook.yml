@@ -172,5 +172,6 @@
       docker_stack:
         state: present
         name: DnDCharacterGen
+        build: yes
         compose:
           - /home/jenkins/PiersProject/docker-compose.yaml
