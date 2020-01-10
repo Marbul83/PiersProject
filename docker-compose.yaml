@@ -32,18 +32,18 @@ services:
     service1:
       image: jenkins:5000/rand1:build:0
       ports:
-        -target: 5001
+        - target: 5001
       build: ./randapp1
 
     service2:
       image: jenkins:5000/rand2:build:0
       ports:
-        -target: 5002
+        - target: 5002
       build: ./randapp2
 
     back-end:
       image: jenkins:5000/back-end:build:0
       ports:
-        -target: 5003
+        - target: 5003
       build: ./backend
 
