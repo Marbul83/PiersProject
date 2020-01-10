@@ -17,7 +17,7 @@ services:
         - back-end
 
     front-end:
-      image: jenkins:5000/front-end:build:0
+      image: jenkins:5000/front-end:build-0
       ports:
         - target: 5000
       build: ./frontend
@@ -30,19 +30,19 @@ services:
         - MYSQL_TEST_DB=${MYSQL_TEST_DB}
     
     service1:
-      image: jenkins:5000/rand1:build:0
+      image: jenkins:5000/rand1:build-0
       ports:
         - target: 5001
       build: ./randapp1
 
     service2:
-      image: jenkins:5000/rand2:build:0
+      image: jenkins:5000/rand2:build-0
       ports:
         - target: 5002
       build: ./randapp2
 
     back-end:
-      image: jenkins:5000/back-end:build:0
+      image: jenkins:5000/back-end:build-0
       ports:
         - target: 5003
       build: ./backend
