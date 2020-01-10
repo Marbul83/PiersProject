@@ -22,11 +22,12 @@ services:
         - target: 5000
       build: ./frontend
       environment:
-        - MYSQL_USER=
-        - MYSQL_PWD=
-        - MYSQL_IP=
-        - MYSQL_DB=
-        - MYSQL_SK=
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PWD=${MYSQL_PWD}
+        - MYSQL_IP=${MYSQL_IP}
+        - MYSQL_DB=${MYSQL_DB}
+        - MYSQL_SK=${MYSQL_SK}
+        - MYSQL_TEST_DB=${MYSQL_TEST_DB}
     
     service1:
       image: jenkins:5000/rand1:build:0

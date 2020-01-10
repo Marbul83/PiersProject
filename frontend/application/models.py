@@ -1,12 +1,11 @@
 from application import db, login_manager
 from flask_login import UserMixin
 
-class user(db.model, UserMixin):
+class user(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     char_name = db.Column(db.String(30), nullable=False, unique=True)
     race = db.Column(db.String(30), nullable=False)
     char_class = db.Column(db.String(30), nullable=False, unique=True)
-    health = db.Column(db.Integer)
     strength = db.Column(db.Integer)
     dexterity = db.Column(db.Integer)
     constitution = db.Column(db.Integer)
@@ -22,7 +21,6 @@ class user(db.model, UserMixin):
             'Name: ', self.char_name, '\r\n',
             'race: ', self.race, '\r\n',
             'class: ', self.char_class, '\r\n',
-            'max health: ', str(self.health), '\r\n',
             'strength: ', str(self.strength), '\r\n',
             'dexterity: ', str(self.dexterity), '\r\n',
             'constitution: ', str(self.constitution), '\r\n',
@@ -37,13 +35,13 @@ class user(db.model, UserMixin):
     def load_user(id):
         return user.query.get(int(id))
 
-class background(db.model):
+class background(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False, unique=True)
     effects = db.Column(db.String(100), nullable=False)
 
-class feat(db.model):
+class feat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False, unique=True)
     effects = db.Column(db.String(300), nullable=False)
-    stat-modify = db.Column(db.String(30))
+    skillmodify = db.Column(db.String(30))

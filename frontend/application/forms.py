@@ -1,7 +1,7 @@
-from wtforms import StringField, SubmitField, IntegerField, PasswordField, SelectField BooleanField
+from wtforms import StringField, SubmitField, IntegerField, PasswordField, SelectField, BooleanField
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from application.models import user, background, skill
+from application.models import user, background, feat
 from application import login_manager, password_hash as pw
 
 class LoginForm(FlaskForm):
@@ -26,8 +26,7 @@ class NewChar1(FlaskForm):
             ('Halfling','Halfling'), 
             ('Gnome','Gnome'), 
             ('Half-Orc','Half-Orc'),
-            ('Tiefling','Tiefling'),
-            validators=[DataRequired(message=None)]
+            ('Tiefling','Tiefling')
         ]
     )
     char_class = SelectField(
@@ -37,8 +36,7 @@ class NewChar1(FlaskForm):
             ('Wizard','Wizard'),
             ('Cleric','Cleric'),
             ('Rogue','Rogue'),
-            ('Ranger','Ranger'),
-            validators=[DataRequired(message=None)]
+            ('Ranger','Ranger')
         ]
     )
     submit = SubmitField('Confirm')
@@ -52,7 +50,7 @@ class NewChar2(FlaskForm):
             ('3','3'),
             ('4','4'),
             ('5','5'),
-            ('6','6'),
+            ('6','6')
         ]
     )
     dexterity = SelectField(
@@ -63,7 +61,7 @@ class NewChar2(FlaskForm):
             ('3','3'),
             ('4','4'),
             ('5','5'),
-            ('6','6'),
+            ('6','6')
         ]
     )
     constitution = SelectField(
@@ -74,7 +72,7 @@ class NewChar2(FlaskForm):
             ('3','3'),
             ('4','4'),
             ('5','5'),
-            ('6','6'),
+            ('6','6')
         ]
     )
     intelligence = SelectField(
@@ -85,7 +83,7 @@ class NewChar2(FlaskForm):
             ('3','3'),
             ('4','4'),
             ('5','5'),
-            ('6','6'),
+            ('6','6')
         ]
     )
     wisdom = SelectField(
@@ -96,7 +94,7 @@ class NewChar2(FlaskForm):
             ('3','3'),
             ('4','4'),
             ('5','5'),
-            ('6','6'),
+            ('6','6')
         ]
     )
     charisma = SelectField(
@@ -107,7 +105,7 @@ class NewChar2(FlaskForm):
             ('3','3'),
             ('4','4'),
             ('5','5'),
-            ('6','6'),
+            ('6','6')
         ]
     )
     submit = SubmitField('Confirm')
@@ -118,7 +116,9 @@ class NewChar2(FlaskForm):
         for field in [self.strength, self.dexterity, self.constitution, 
             self.intelligence, self.wisdom, self.charisma]:
             if field.data in seen:
-                field.errors.append('Please select six different numbers')
+                errors=list(field.errors)
+                errors.append('Please select six different numbers')
+                field.errors=tuple(errors)
                 result = False
             else:
                 seen.add(field.data)
@@ -129,6 +129,18 @@ class PasswordForm(FlaskForm):
         validators=[DataRequired()
         ]
     )
+    password = PasswordField('Password', 
+        validators=[DataRequired()
+        ]
+    )
+    confirm_pass = PasswordField('Password', 
+        validators=[DataRequired(), 
+            EqualTo('password')
+        ]
+    )
+    submit = SubmitField('Confirm Password')
+
+class CreatePasswordForm(FlaskForm):
     password = PasswordField('Password', 
         validators=[DataRequired()
         ]
