@@ -90,7 +90,7 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
     if form.validate_on_submit():
         hashed = pw.hash_password(form.password.data)
         new_user = user(
-            char_name=char_complete.["char_name"],
+            char_name=char_complete["char_name"],
             race=char_complete["race"],
             char_class=char_complete["char_class"],
             strength=char_complete["strength"],

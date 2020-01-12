@@ -1,14 +1,7 @@
 pipeline{
         agent any
         
-        stages{
-                stage('--Compose--'){
-                        steps{
-                                sh '''docker-compose up --build
-                                      docker-compose down
-                                      '''
-                        }
-                }  
+        stages{ 
                 stage('--Front End--'){
                         steps{
                                 sh '''image="35.234.148.125:5000/frontend:build-${BUILD_NUMBER}"
