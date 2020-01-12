@@ -7,5 +7,5 @@ from application import app
 def background():
     backgrounds=['Acolyte','Charlatan','Criminal / Spy','Entertainer','Folk Hero','Gladiator','Guild Artisan / Guild Merchant','Knight','Noble','Pirate','Sage','Soldier','Urchin']
     choice=random.choice(backgrounds)
-    result={'Background':choice}
-    return result
+
+    return {"Background":choice}

@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, Response, request
 import random
 from application import app
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 @app.route('/roll', methods=['GET','POST'])
 def roll():
     rolls=[]
@@ -15,6 +15,4 @@ def roll():
     rolls.sort(reverse = True)
     bin = rolls.pop()
     bin = rolls.pop()
-    for j in range(6):
-        results[str(j+1)]=rolls[j]
-    return results
+    return results {"1":rolls[0],"2":rolls[1],"3":rolls[2],"4":rolls[3],"5":rolls[4], "6":rolls[5]}
