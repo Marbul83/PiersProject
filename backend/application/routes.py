@@ -3,7 +3,7 @@ import random
 from application import app
 
 @app.route('/')
-@app.route('/back_end', methods=['GET','POST'])
+@app.route('/back_end/<json>', methods=['GET','POST'])
 def back_end(json):
 
     dice=json["Dice"]
