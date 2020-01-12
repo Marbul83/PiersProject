@@ -106,11 +106,10 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
         )
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('login'))
+        return redirect(url_for('login', char_name=char["char_name"]))
     else:
         return render_template('Password.html', title='Password', form=form)
-    #send to back end
-    #redirect to /character
+
 
 @app.route('/character', methods=['GET','POST'])
 @login_required
