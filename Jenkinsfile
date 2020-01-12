@@ -12,7 +12,7 @@ pipeline{
                                 sh '''image="35.234.148.125:5000/frontend:build-${BUILD_NUMBER}"
                                       docker build -t ${image} /var/lib/jenkins/workspace/DnD_master/frontend
                                       docker push ${image}
-                                      gcloud compute ssh swarm-master --zone europe-west2-c  << EOF
+                                      ssh 35.234.150.82  << EOF
                                       docker service update --image ${image} DnDCharacterGen_frontend
                                       EOF
                                       '''
@@ -23,7 +23,7 @@ pipeline{
                                 sh '''image="35.234.148.125:5000/rand1:build-${BUILD_NUMBER}"
                                       docker build -t ${image} /var/lib/jenkins/workspace/DnD_master/randapp1
                                       docker push ${image}
-                                      gcloud compute ssh swarm-master --zone europe-west2-c  << EOF
+                                      ssh 35.234.150.82  << EOF
                                       docker service update --image ${image} DnDCharacterGen_service1
                                       EOF
                                       '''
@@ -34,7 +34,7 @@ pipeline{
                                 sh '''image="35.234.148.125:5000/rand2:build-${BUILD_NUMBER}"
                                       docker build -t ${image} /var/lib/jenkins/workspace/DnD_master/randapp2
                                       docker push ${image}
-                                      gcloud compute ssh swarm-master --zone europe-west2-c  << EOF
+                                      ssh 35.234.150.82  << EOF
                                       docker service update --image ${image} DnDCharacterGen_service2
                                       EOF
                                       '''
@@ -45,7 +45,7 @@ pipeline{
                                 sh '''image="35.234.148.125:5000/backend:build-${BUILD_NUMBER}"
                                       docker build -t ${image} /var/lib/jenkins/workspace/DnD_master/backend
                                       docker push ${image}
-                                      gcloud compute ssh swarm-master --zone europe-west2-c  << EOF
+                                      ssh 35.234.150.82  << EOF
                                       docker service update --image ${image} DnDCharacterGen_backend
                                       EOF
                                       '''
