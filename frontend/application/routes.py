@@ -72,8 +72,8 @@ def feats(char_name, race, char_class, strength, dexterity, constitution, intell
 def submit(feat, char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
     dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
-    skill_dice=json.dumps(dice)
-    back=json.dumps(background)
+    skill_dice=json.loads(dice)
+    back=json.loads(background)
     die1=skill_dice["1"]
     die2=skill_dice["2"]
     die3=skill_dice["3"]
@@ -86,7 +86,7 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
         "intelligence":intelligence,"wisdom":wisdom,"charisma":charisma,"feats":feat, 
         "1":die1,"2":die2,"3":die3,"4":die4,"5":die5,"6":die6
         })
-    char=char_complete.json()
+    char=json.loads(char_complete)
     form = CreatePasswordForm()
     if form.validate_on_submit():
         hashed = pw.hash_password(form.password.data)
