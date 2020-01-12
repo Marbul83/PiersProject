@@ -90,17 +90,17 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
     if form.validate_on_submit():
         hashed = pw.hash_password(form.password.data)
         new_user = user(
-            char_name=char_complete.json()["char_name"],
-            race=char_complete.json()["race"],
-            char_class=char_complete.json()["char_class"],
-            strength=char_complete.json()["strength"],
-            dexterity=char_complete.json()["dexterity"],
-            constitution=char_complete.json()["constitution"],
-            intelligence=char_complete.json()["intelligence"],
-            wisdom=char_complete.json()["wisdom"],
-            charisma=char_complete.json()["charisma"],
-            background=background.json()["Background"],
-            feats=char_complete.json()["feats"],
+            char_name=char_complete.["char_name"],
+            race=char_complete["race"],
+            char_class=char_complete["char_class"],
+            strength=char_complete["strength"],
+            dexterity=char_complete["dexterity"],
+            constitution=char_complete["constitution"],
+            intelligence=char_complete["intelligence"],
+            wisdom=char_complete["wisdom"],
+            charisma=char_complete["charisma"],
+            background=background["Background"],
+            feats=char_complete["feats"],
             password=hashed,
         )
         db.session.add(user)
