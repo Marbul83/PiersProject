@@ -1,10 +1,12 @@
 from flask import render_template, redirect, url_for, Response, request
 import random
 from application import app
+import json
 
 @app.route('/', methods=['GET','POST'])
 @app.route('/back_end', methods=['GET','POST'])
 def back_end(json):
+    json.loads(json)
 
     dice=json["Dice"]
     char=json["Char"]

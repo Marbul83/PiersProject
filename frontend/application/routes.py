@@ -4,6 +4,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from application import app, db, password_hash as pw
 from application.forms import LoginForm, NewChar1, NewChar2, PasswordForm, CreatePasswordForm
 from application.models import user, background, feat
+import json
 
 @app.route('/')
 @app.route('/home')
@@ -59,9 +60,6 @@ def new_char2(char_name, race, char_class):
         wisdom=form.wisdom.data
         charisma=form.charisma.data
 
-        new_char={"char_name":char_name, "race":race, "char_class":char_class,
-        "strength":strength, "dexterity":dexterity, "constitution":constitution,
-        "intelligence":intelligence, "wisdom":wisdom, "charisma":charisma, "feats":""} 
         return redirect(url_for('feats', char_name=char_name, race=race, char_class=char_class, strength=strength, dexterity=dexterity, constitution=constitution, intelligence=intelligence, wisdom=wisdom, charisma=charisma))
     return render_template('new_char2.html', title='New Character', form=form)
 
@@ -77,10 +75,11 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
         "strength":strength, "dexterity":dexterity, "constitution":constitution,
         "intelligence":intelligence, "wisdom":wisdom, "charisma":charisma, "feats":""}
     character['feats']=feat
+    character
     skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
 
-    request={"Char":character,"Dice":skill_dice}
+    request=json.dumps({"Char":character,"Dice":skill_dice})
     print(request)
 
     char_complete=requests.get('http://backend:5003/', json=request)
