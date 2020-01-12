@@ -73,6 +73,7 @@ def feats(char):
 @app.route('/submit/<feat>/<char>', methods=['GET','POST'])
 def submit(feat, char):
     character = char
+    print(character)
     character['feats']=feat
     skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
