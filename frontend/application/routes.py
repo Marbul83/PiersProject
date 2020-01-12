@@ -113,7 +113,8 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
 
 @app.route('/character', methods=['GET','POST'])
 @login_required
-def display_char():
+def character():
+    feat=feat.query.filter_by(id=current_user.feats).first()
     return render_template('DisplayChar.html', title=current_user.char_name, user=current_user)
 
 @app.route("/change_password", methods=['GET','POST'])
