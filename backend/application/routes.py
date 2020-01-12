@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, Response, request
 import random
 from application import app
-import json
+import json, jsonify
 
 @app.route('/', methods=['POST'])
 def back_end():
