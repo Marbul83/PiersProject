@@ -3,7 +3,7 @@ pipeline{
         
         environment 
 	{
-		ssh_ip = "10.154.15.198"
+		ssh_ip = "35.234.150.82"
 	}
         
         stages{
