@@ -70,15 +70,15 @@ def feats(char_name, race, char_class, strength, dexterity, constitution, intell
 
 @app.route('/submit/<feat>/<char_name>/<race>/<char_class>/<strength>/<dexterity>/<constitution>/<intelligence>/<wisdom>/<charisma>', methods=['GET','POST'])
 def submit(feat, char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
-    skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
+    skill_dice=json.dumps(requests.post('http://service1:5001/')) #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
-    back=background.json()
-    die1=skill_dice.json()["1"]
-    die2=skill_dice.json()["2"]
-    die3=skill_dice.json()["3"]
-    die4=skill_dice.json()["4"]
-    die5=skill_dice.json()["5"]
-    die6=skill_dice.json()["6"]
+    back=json.dumps(background)
+    die1=skill_dice["1"]
+    die2=skill_dice["2"]
+    die3=skill_dice["3"]
+    die4=skill_dice["4"]
+    die5=skill_dice["5"]
+    die6=skill_dice["6"]
 
     char_complete=requests.post('http://backend:5003/', json={"char_name":char_name,"race":race,"char_class":char_class,
         "strength":strength, "dexterity":dexterity,"constitution":constitution,
