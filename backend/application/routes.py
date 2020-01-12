@@ -25,5 +25,5 @@ def back_end():
     charisma=sort[5]
     return {"char_name":request.get_json()["char_name"],"race":request.get_json()["race"],"char_class":request.get_json()["char_class"],
         "strength":strength, "dexterity":dexterity,"constitution":constitution,
-        "intelligence":intelligence,"wisdom":wisdom,"charisma":charisma,"feats":feat
+        "intelligence":intelligence,"wisdom":wisdom,"charisma":charisma,"feats":request.get_json()["feats"]
         }
