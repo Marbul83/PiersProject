@@ -73,16 +73,18 @@ def feats(char_name, race, char_class, strength, dexterity, constitution, intell
 def submit(feat, char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
     character={"char_name":char_name, "race":race, "char_class":char_class,
         "strength":strength, "dexterity":dexterity, "constitution":constitution,
-        "intelligence":intelligence, "wisdom":wisdom, "charisma":charisma, "feats":""}
-    character['feats']=feat
-    character
+        "intelligence":intelligence, "wisdom":wisdom, "charisma":charisma, "feats":feat}
     skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
 
     request=json.dumps({"Char":character,"Dice":skill_dice})
     print(request)
 
-    char_complete=requests.get('http://backend:5003/', json=request)
+    char_complete=requests.get('http://backend:5003/', json={"char_name":char_name,"race":race,"char_class":char_class,
+        "strength":strength, "dexterity":dexterity,"constitution":constitution,
+        "intelligence":intelligence,"wisdom":wisdom,"charisma":charisma,"feats":feat, 
+        "1":skill_dice["1"],"2":skill_dice["2"],"3":skill_dice["3"],"4":skill_dice["4"],"5":skill_dice["5"],"6":skill_dice["6"]
+        })
 
     form = CreatePasswordForm()
     if form.validate_on_submit():
