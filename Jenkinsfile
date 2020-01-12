@@ -9,8 +9,7 @@ pipeline{
         stages{
                 stage('--Front End--'){
                         steps{
-                                sh '''ssh ${ssh_ip} << EOF
-                                      image="jenkins:5000/frontend:build-${BUILD_NUMBER}"
+                                sh '''image="jenkins:5000/frontend:build-${BUILD_NUMBER}"
                                       cd /PiersProject/frontend
                                       docker build -t ${image}
                                       docker push ${image}
@@ -22,8 +21,7 @@ pipeline{
                 }  
                 stage('--Service1--'){
                         steps{
-                                sh '''ssh ${ssh_ip} << EOF
-                                      image="jenkins:5000/rand1:build-${BUILD_NUMBER}"
+                                sh '''image="jenkins:5000/rand1:build-${BUILD_NUMBER}"
                                       cd /PiersProject/randapp1
                                       docker build -t ${image}
                                       docker push ${image}
@@ -35,8 +33,7 @@ pipeline{
                 }
                 stage('--Service2--'){
                         steps{
-                                sh '''ssh ${ssh_ip} << EOF
-                                      image="jenkins:5000/rand2:build-${BUILD_NUMBER}"
+                                sh '''image="jenkins:5000/rand2:build-${BUILD_NUMBER}"
                                       cd /PiersProject/randapp2
                                       docker build -t ${image}
                                       docker push ${image}
@@ -48,8 +45,7 @@ pipeline{
                 }
                 stage('--Back End--'){
                         steps{
-                                sh '''ssh ${ssh_ip} << EOF
-                                      image="jenkins:5000/backend:build-${BUILD_NUMBER}"
+                                sh '''image="jenkins:5000/backend:build-${BUILD_NUMBER}"
                                       cd /PiersProject/backend
                                       docker build -t ${image}
                                       docker push ${image}
