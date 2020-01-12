@@ -137,28 +137,9 @@
     - name: Create a docker registry
       docker_container:
         name: registry
-        image: registry
+        image: registry:2
         ports:
           - "5000:5000"
-
-- name: Install docker public ssh key
-  hosts: swarmmaster
-  become: true
-  tasks:
-  - name: ssh folder
-    file:
-      path: /home/kochab_96/.ssh
-      state: directory
-      mode: "0700"
-      owner: jenkins
-      group: jenkins 
-  - name: install public key
-    copy:
-      src: ~/.ssh/ansible_id_rsa.pub
-      dest: /home/kochab_96/.ssh/authorized_keys
-      owner: jenkins
-      group: jenkins
-      mode: u=rw,g=,o=
 
 - name: Docker Swarm deploy
   hosts: swarmmaster
@@ -179,6 +160,25 @@
     - name: Deploy stack from a compose file
       docker_stack:
         state: present
-        name: DnDCharacterGen
+        name: piersproject
         compose:
           - /home/jenkins/PiersProject/docker-compose.yaml
+
+- name: Install docker public ssh key
+  hosts: swarmmaster
+  become: true
+  tasks:
+  - name: ssh folder
+    file:
+      path: /home/kochab_96/.ssh
+      state: directory
+      mode: "0700"
+      owner: jenkins
+      group: jenkins 
+  - name: install public key
+    copy:
+      src: ~/.ssh/ansible_id_rsa.pub
+      dest: /home/kochab_96/.ssh/authorized_keys
+      owner: jenkins
+      group: jenkins
+      mode: u=rw,g=,o=
