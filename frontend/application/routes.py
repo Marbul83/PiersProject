@@ -70,8 +70,8 @@ def feats(char_name, race, char_class, strength, dexterity, constitution, intell
 
 @app.route('/submit/<feat>/<char_name>/<race>/<char_class>/<strength>/<dexterity>/<constitution>/<intelligence>/<wisdom>/<charisma>', methods=['GET','POST'])
 def submit(feat, char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
-    dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
-    background=requests.post('http://service2:5002/') #{"Background":"Noble"}
+    dice=requests.get('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
+    background=requests.get('http://service2:5002/') #{"Background":"Noble"}
     skill_dice=json.loads(dice)
     back=json.loads(background)
     die1=skill_dice["1"]
