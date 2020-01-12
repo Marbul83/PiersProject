@@ -1,12 +1,14 @@
 pipeline{
         agent any
         
-        environment 
-	{
-		ssh_ip = "35.234.150.82"
-	}
-        
         stages{
+                stage('--Compose--'){
+                        steps{
+                                sh '''docker-compose up --build
+                                      docker-compose down
+                                      '''
+                        }
+                }  
                 stage('--Front End--'){
                         steps{
                                 sh '''image="35.234.148.125:5000/frontend:build-${BUILD_NUMBER}"
