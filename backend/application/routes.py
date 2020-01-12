@@ -1,9 +1,9 @@
-from flask import render_template, redirect, url_for, Response, request
+from flask import render_template, redirect, url_for, Response, request, jsonify
 import random
 from application import app
 
-@app.route('/')
-@app.route('/back_end/<json>', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
+@app.route('/back_end', methods=['GET','POST'])
 def back_end(json):
 
     dice=json["Dice"]
@@ -20,4 +20,4 @@ def back_end(json):
     char["intelligence"]=sort[3]
     char["wisdom"]=sort[4]
     char["charisma"]=sort[5]
-    return char
+    return jsonify(char)
