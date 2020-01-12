@@ -99,7 +99,7 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
             intelligence=char["intelligence"],
             wisdom=char["wisdom"],
             charisma=char["charisma"],
-            background=background["Background"],
+            background=background.json()["Background"],
             feats=char["feats"],
             password=hashed,
         )
