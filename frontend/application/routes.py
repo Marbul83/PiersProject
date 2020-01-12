@@ -50,7 +50,6 @@ def new_char():
 @app.route('/new_char2/<char_name>/<race>/<char_class>', methods=['GET','POST'])
 def new_char2(char_name, race, char_class):
     form=NewChar2()
-    new_char={}
     if form.validate_on_submit():
         print(form.strength.data)
         strength=form.strength.data
@@ -73,13 +72,12 @@ def feats(char_name, race, char_class, strength, dexterity, constitution, intell
 def submit(feat, char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
     skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
-    print(request)
-    die1=skill_dice["1"]
-    die2=skill_dice["2"]
-    die3=skill_dice["3"]
-    die4=skill_dice["4"]
-    die5=skill_dice["5"]
-    die6=skill_dice["6"]
+    die1=skill_dice.json()["1"]
+    die2=skill_dice.json()["2"]
+    die3=skill_dice.json()["3"]
+    die4=skill_dice.json()["4"]
+    die5=skill_dice.json()["5"]
+    die6=skill_dice.json()["6"]
 
     char_complete=requests.post('http://backend:5003/', json={"char_name":char_name,"race":race,"char_class":char_class,
         "strength":strength, "dexterity":dexterity,"constitution":constitution,
@@ -91,17 +89,17 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
     if form.validate_on_submit():
         hashed = pw.hash_password(form.password.data)
         user = user(
-            char_name=char_complete["char_name"],
-            race=char_complete["race"],
-            char_class=char_complete["char_class"],
-            strength=char_complete["strength"],
-            dexterity=char_complete["dexterity"],
-            constitution=char_complete["constitution"],
-            intelligence=char_complete["intelligence"],
-            wisdom=char_complete["wisdom"],
-            charisma=char_complete["charisma"],
-            background=background["Background"],
-            feats=char_complete["feats"],
+            char_name=char_complete.json()["char_name"],
+            race=char_complete.json()["race"],
+            char_class=char_complete.json()["char_class"],
+            strength=char_complete.json()["strength"],
+            dexterity=char_complete.json()["dexterity"],
+            constitution=char_complete.json()["constitution"],
+            intelligence=char_complete.json()["intelligence"],
+            wisdom=char_complete.json()["wisdom"],
+            charisma=char_complete.json()["charisma"],
+            background=background.json()["Background"],
+            feats=char_complete.json()["feats"],
             password=hashed,
         )
         db.session.add(user)

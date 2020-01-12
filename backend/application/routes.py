@@ -3,23 +3,27 @@ import random
 from application import app
 import json
 
-@app.route('/', methods=['GET','POST'])
-@app.route('/back_end', methods=['GET','POST'])
-def back_end(json):
-    json.loads(json)
+@app.route('/', methods=['POST'])
+def back_end():
+    skills=[request.get_json()["strength"],request.get_json()["dexterity"],request.get_json()["constitution"],request.get_json()["intelligence"],request.get_json()["wisdom"],request.get_json()["charisma"]]
+    
+    dice={"1":request.get_json()["1"],"2":request.get_json()["2"],
+    "3":request.get_json()["3"],"4":request.get_json()["4"],
+    "5":request.get_json()["5"],"6":request.get_json()["6"]}
 
-    dice=json["Dice"]
-    char=json["Char"]
-    skills=[char["strength"],char["dexterity"],char["constitution"],char["intelligence"],char["wisdom"],char["charisma"]]
     sort=[]
+
     for skill in skills:
         for key in dice:
             if key == skill:
                 sort.append(dice[key])
-    char["strength"]=sort[0]
-    char["dexterity"]=sort[1]
-    char["constitution"]=sort[2]
-    char["intelligence"]=sort[3]
-    char["wisdom"]=sort[4]
-    char["charisma"]=sort[5]
-    return char
+    strength=sort[0]
+    dexterity=sort[1]
+    constitution=sort[2]
+    intelligence=sort[3]
+    wisdom=sort[4]
+    charisma=sort[5]
+    return {"char_name":request.get_json()["char_name"],"race":request.get_json()["race"],"char_class":request.get_json()["char_class"],
+        "strength":strength, "dexterity":dexterity,"constitution":constitution,
+        "intelligence":intelligence,"wisdom":wisdom,"charisma":charisma,"feats":feat
+        })
