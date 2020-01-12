@@ -1,7 +1,6 @@
-from flask import render_template, redirect, url_for, Response, request
+from flask import render_template, redirect, url_for, Response, request, jsonify
 import random
-from application import 
-import jsonify
+from application import app
 
 @app.route('/')
 @app.route('/background', methods=['GET','POST'])
