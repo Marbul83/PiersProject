@@ -51,6 +51,7 @@ def new_char2(char_name, race, char_class):
     form=NewChar2()
     new_char={}
     if form.validate_on_submit():
+        print(form.strength.data)
         strength=form.strength.data
         dexterity=form.dexterity.data
         constitution=form.constitution.data
@@ -103,7 +104,6 @@ def submit(feat, char):
         db.session.commit()
         return redirect(url_for('login'))
     else:
-        print(CreatePasswordForm.errors)
         return render_template('Password.html', title='Password', form=form)
     #send to back end
     #redirect to /character
