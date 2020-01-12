@@ -20,7 +20,7 @@ def login(char_name):
     form = LoginForm()
     if form.validate_on_submit():
         userfound = user.query.filter_by(char_name=char_name).first()
-        if userfound and pw.verify_password(user.password, form.password.data):
+        if userfound and pw.verify_password(userfound.password, form.password.data):
             login_user(userfound, remember=form.remember.data)
             next_page = request.args.get('next')
             if next_page:
