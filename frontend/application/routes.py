@@ -103,7 +103,7 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
             feats=char_complete["feats"],
             password=hashed,
         )
-        db.session.add(user)
+        db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
     else:
