@@ -6,7 +6,7 @@ from application import login_manager, password_hash as pw
 
 class LoginForm(FlaskForm):
     password = PasswordField('Password: ',
-        validators=[DataRequired(message=None), Length(min=5, max=30)
+        validators=[DataRequired(message=None)
         ]    
     )
     remember = BooleanField('Remember Me')
