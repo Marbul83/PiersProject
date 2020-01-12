@@ -72,7 +72,7 @@ def feats(char_name, race, char_class, strength, dexterity, constitution, intell
 def submit(feat, char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
     skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
-
+    back=background.json()
     die1=skill_dice.json()["1"]
     die2=skill_dice.json()["2"]
     die3=skill_dice.json()["3"]
@@ -99,7 +99,7 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
             intelligence=char["intelligence"],
             wisdom=char["wisdom"],
             charisma=char["charisma"],
-            background=background.json()["Background"],
+            background=back["Background"],
             feats=char["feats"],
             password=hashed,
         )
