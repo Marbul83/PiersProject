@@ -14,7 +14,6 @@ pipeline{
                                       docker push ${image}
                                       ssh 35.234.150.82  << EOF
                                       docker service update --image ${image} DnDCharacterGen_frontend
-                                      EOF
                                       '''
                         }
                 }  
@@ -25,7 +24,6 @@ pipeline{
                                       docker push ${image}
                                       ssh 35.234.150.82  << EOF
                                       docker service update --image ${image} DnDCharacterGen_service1
-                                      EOF
                                       '''
                         }
                 }
@@ -36,7 +34,6 @@ pipeline{
                                       docker push ${image}
                                       ssh 35.234.150.82  << EOF
                                       docker service update --image ${image} DnDCharacterGen_service2
-                                      EOF
                                       '''
                         }
                 }
@@ -47,7 +44,6 @@ pipeline{
                                       docker push ${image}
                                       ssh 35.234.150.82  << EOF
                                       docker service update --image ${image} DnDCharacterGen_backend
-                                      EOF
                                       '''
                         }
                 }
