@@ -145,7 +145,7 @@ class CreatePasswordForm(FlaskForm):
         validators=[DataRequired()
         ]
     )
-    confirm_password = PasswordField('Password', 
+    confirm_password = PasswordField('Confirm password', 
         validators=[DataRequired(), 
             EqualTo('password')
         ]

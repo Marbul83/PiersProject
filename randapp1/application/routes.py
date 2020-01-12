@@ -6,7 +6,6 @@ from application import app
 @app.route('/roll', methods=['GET','POST'])
 def roll():
     rolls=[]
-    results={"1": "","2": "","3": "","4": "","5": "", "6": ""}
 
     for i in range(8):
         roll = random.randint(0, 20)

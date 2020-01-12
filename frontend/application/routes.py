@@ -72,7 +72,7 @@ def feats(char_name, race, char_class, strength, dexterity, constitution, intell
 def submit(feat, char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
     skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
-    
+
     die1=skill_dice.json()["1"]
     die2=skill_dice.json()["2"]
     die3=skill_dice.json()["3"]
@@ -89,7 +89,7 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
     form = CreatePasswordForm()
     if form.validate_on_submit():
         hashed = pw.hash_password(form.password.data)
-        user = user(
+        new_user = user(
             char_name=char_complete.json()["char_name"],
             race=char_complete.json()["race"],
             char_class=char_complete.json()["char_class"],
