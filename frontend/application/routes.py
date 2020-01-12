@@ -74,11 +74,17 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
     skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
     print(request)
+    die1=skill_dice["1"]
+    die2=skill_dice["2"]
+    die3=skill_dice["3"]
+    die4=skill_dice["4"]
+    die5=skill_dice["5"]
+    die6=skill_dice["6"]
 
     char_complete=requests.post('http://backend:5003/', json={"char_name":char_name,"race":race,"char_class":char_class,
         "strength":strength, "dexterity":dexterity,"constitution":constitution,
         "intelligence":intelligence,"wisdom":wisdom,"charisma":charisma,"feats":feat, 
-        "1":skill_dice["1"],"2":skill_dice["2"],"3":skill_dice["3"],"4":skill_dice["4"],"5":skill_dice["5"],"6":skill_dice["6"]
+        "1":die1,"2":die2,"3":die3,"4":die4,"5":die5,"6":die6
         })
 
     form = CreatePasswordForm()
