@@ -32,6 +32,9 @@
   - name: json
     pip:
       name: jsondiff
+  - name: requests
+    pip:
+      name: requests
   - name: yaml
     pip:
       name: pyyaml
