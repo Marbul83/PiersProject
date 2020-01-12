@@ -62,24 +62,26 @@ def new_char2(char_name, race, char_class):
         new_char={"char_name":char_name, "race":race, "char_class":char_class,
         "strength":strength, "dexterity":dexterity, "constitution":constitution,
         "intelligence":intelligence, "wisdom":wisdom, "charisma":charisma, "feats":""} 
-        return redirect(url_for('feats', char=new_char))
+        return redirect(url_for('feats', char_name=char_name, race=race, char_class=char_class, strength=strength, dexterity=dexterity, constitution=constitution, intelligence=intelligence, wisdom=wisdom, charisma=charisma))
     return render_template('new_char2.html', title='New Character', form=form)
 
 
-@app.route('/feats/<char>')
-def feats(char):
+@app.route('/feats/<char_name>/<race>/<char_class>/<strength>/<dexterity>/<constitution>/<intelligence>/<wisdom>/<charisma>')
+def feats(char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
     query = feat.query.all()
-    return render_template('feats.html', title='Feats', feats=query, char=char)
+    return render_template('feats.html', title='Feats', feats=query, char_name=char_name, race=race, char_class=char_class, strength=strength, dexterity=dexterity, constitution=constitution, intelligence=intelligence, wisdom=wisdom, charisma=charisma)
 
-@app.route('/submit/<feat>/<char>', methods=['GET','POST'])
-def submit(feat, char):
-    character = char
-    print(character)
+@app.route('/submit/<feat>/<char_name>/<race>/<char_class>/<strength>/<dexterity>/<constitution>/<intelligence>/<wisdom>/<charisma>', methods=['GET','POST'])
+def submit(feat, char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
+    character={"char_name":char_name, "race":race, "char_class":char_class,
+        "strength":strength, "dexterity":dexterity, "constitution":constitution,
+        "intelligence":intelligence, "wisdom":wisdom, "charisma":charisma, "feats":""}
     character['feats']=feat
     skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}
 
     request={"Char":character,"Dice":skill_dice}
+    print(request)
 
     char_complete=requests.get('http://backend:5003/', json=request)
 
