@@ -86,7 +86,7 @@ def submit(feat, char_name, race, char_class, strength, dexterity, constitution,
         "intelligence":intelligence,"wisdom":wisdom,"charisma":charisma,"feats":feat, 
         "1":die1,"2":die2,"3":die3,"4":die4,"5":die5,"6":die6
         })
-    char=json.loads(char_complete)
+    char=char_complete.json()
     form = CreatePasswordForm()
     if form.validate_on_submit():
         hashed = pw.hash_password(form.password.data)
