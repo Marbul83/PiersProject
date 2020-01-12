@@ -42,5 +42,12 @@ pipeline{
                                       '''
                         }
                 }
+                stage('--Clean up--'){
+                        steps{
+                                sh '''ssh 35.234.150.82  << EOF
+                                      docker system prune
+                                      '''
+                        }
+                }
         }
 }
