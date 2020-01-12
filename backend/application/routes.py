@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, Response, request, jsonify
+from flask import render_template, redirect, url_for, Response, request
 import random
 from application import app
 
@@ -20,4 +20,4 @@ def back_end(json):
     char["intelligence"]=sort[3]
     char["wisdom"]=sort[4]
     char["charisma"]=sort[5]
-    return jsonify(char)
+    return char
