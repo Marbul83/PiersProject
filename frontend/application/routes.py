@@ -19,9 +19,9 @@ def login(char_name):
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = user.query.filter_by(char_name=char_name).first()
-        if user and pw.verify_password(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
+        userfound = user.query.filter_by(char_name=char_name).first()
+        if userfound and pw.verify_password(user.password, form.password.data):
+            login_user(userfound, remember=form.remember.data)
             next_page = request.args.get('next')
             if next_page:
                 return redirect(next_page)
