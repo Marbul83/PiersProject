@@ -46,13 +46,10 @@ def new_char():
 
     return render_template('new_char1.html', title='New Character', form=form)
 
-def new_char_var():
-    new_char={}
-
 @app.route('/new_char2/<char_name>/<race>/<char_class>', methods=['GET','POST'])
 def new_char2(char_name, race, char_class):
     form=NewChar2()
-    new_char_var()
+    new_char={}
     if form.validate_on_submit():
         strength=form.strength.data
         dexterity=form.dexterity.data
@@ -61,22 +58,21 @@ def new_char2(char_name, race, char_class):
         wisdom=form.wisdom.data
         charisma=form.charisma.data
 
-        new_char_var.new_char={"char_name":char_name, "race":race, "char_class":char_class,
+        new_char={"char_name":char_name, "race":race, "char_class":char_class,
         "strength":strength, "dexterity":dexterity, "constitution":constitution,
         "intelligence":intelligence, "wisdom":wisdom, "charisma":charisma, "feats":""} 
-        return redirect(url_for('feats'))
+        return redirect(url_for('feats', char=new_char))
     return render_template('new_char2.html', title='New Character', form=form)
 
 
-@app.route('/feats')
-def feats():
+@app.route('/feats/<char>')
+def feats(char):
     query = feat.query.all()
-    return render_template('feats.html', title='Feats', feats=query)
+    return render_template('feats.html', title='Feats', feats=query, char=char)
 
-@app.route('/submit/<feat>', methods=['GET','POST'])
-def submit(feat):
-    new_char_var()
-    character = new_char_var.new_char
+@app.route('/submit/<feat>/<char>', methods=['GET','POST'])
+def submit(feat, char):
+    character = char
     character['feats']=feat
     skill_dice=requests.post('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.post('http://service2:5002/') #{"Background":"Noble"}

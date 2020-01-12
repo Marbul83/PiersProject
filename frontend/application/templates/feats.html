@@ -2,8 +2,9 @@
 {% block body_content %}
     {% for feat in feats %}
         <div>
+            <h2>{{ char.char_name }}</h2>
             <h3>{{ feat.name }}     {{ feat.effects }}</h3>
-            <a href="{{ url_for('submit', feat=feat.id) }}">Choose This Feat</a>
+            <a href="{{ url_for('submit', feat=feat.id, char=char) }}">Choose This Feat</a>
         </div>
         <br>
     {% endfor %}
