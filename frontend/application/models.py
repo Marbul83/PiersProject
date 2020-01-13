@@ -5,7 +5,7 @@ class user(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     char_name = db.Column(db.String(30), nullable=False, unique=True)
     race = db.Column(db.String(30), nullable=False)
-    char_class = db.Column(db.String(30), nullable=False, unique=True)
+    char_class = db.Column(db.String(30), nullable=False)
     strength = db.Column(db.Integer)
     dexterity = db.Column(db.Integer)
     constitution = db.Column(db.Integer)
@@ -34,11 +34,6 @@ class user(db.Model, UserMixin):
     @login_manager.user_loader
     def load_user(id):
         return user.query.get(int(id))
-
-class background(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), nullable=False, unique=True)
-    effects = db.Column(db.String(100), nullable=False)
 
 class feat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
