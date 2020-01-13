@@ -1,13 +1,7 @@
 pipeline{
         agent any
         
-        stages{ 
-                stage('--Compose Up---'){
-                        steps{
-                                sh '''docker-compose --build
-                                      '''
-                        }
-                }
+        stages{
                 stage('--Testing--'){
                         steps{
                                 sh '''pytest --cov'''
