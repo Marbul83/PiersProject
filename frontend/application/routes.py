@@ -3,7 +3,7 @@ import requests
 from flask_login import login_user, current_user, logout_user, login_required
 from application import app, db, password_hash as pw
 from application.forms import LoginForm, NewChar1, NewChar2, PasswordForm, CreatePasswordForm
-from application.models import user, background, feat
+from application.models import user, feat
 import json
 
 @app.route('/')

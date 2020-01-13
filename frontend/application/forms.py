@@ -1,7 +1,7 @@
 from wtforms import StringField, SubmitField, IntegerField, PasswordField, SelectField, BooleanField
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from application.models import user, background, feat
+from application.models import user, feat
 from application import login_manager, password_hash as pw
 
 class LoginForm(FlaskForm):
