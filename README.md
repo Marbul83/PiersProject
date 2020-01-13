@@ -1,7 +1,7 @@
 # DnD
 
 ### Deployed app http://35.234.150.82/
-![Presentation](https://github.com/PCMBarber/PiersProject/blob/master/Media/DnDPresentation.pptx)
+![Presentation](https://github.com/PCMBarber/PiersProject/blob/master/Media/DnDPresent.pptx)
 
 
 ## Contents
