@@ -2,6 +2,19 @@ pipeline{
         agent any
         
         stages{ 
+                stage('--Compose Up---'){
+                        steps{
+                                sh '''docker-compose up --build
+                                      docker-compose down
+                                      '''
+                        }
+                }
+                stage('--Testing--'){
+                        steps{
+                                sh '''pytest --cov'''
+                        }
+                }
+                
                 stage('--Front End--'){
                         steps{
                                 sh '''image="35.234.148.125:5000/frontend:build-${BUILD_NUMBER}"
