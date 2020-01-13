@@ -1,4 +1,5 @@
-# PiersProject
+# DnD
+### Deployed app http://35.234.150.82/
 
 ## Contents
 * [Installation](#Installation)
