@@ -75,43 +75,14 @@ class TestRouting(TestBase):
         self.assertEqual(response.status_code, 200)
 
     def testnew_char2(self):
-        response = self.client.url_for('new_char2', char_name="test", race="fluid", char_class="Pigmy")
+        response = self.client.get(url_for('new_char2', char_name="test", race="fluid", char_class="Pigmy"))
 
         self.assertEqual(response.status_code, 200)
 
     def testFeats(self):
-        response = self.client.url_for('feats', char_name="test", race="fluid", char_class="Pigmy", strength=1, dexterity=1, constitution=1, intelligence=1, wisdom=1, charisma=1)
+        response = self.client.get(url_for('feats', char_name="test", race="fluid", char_class="Pigmy", strength=1, dexterity=1, constitution=1, intelligence=1, wisdom=1, charisma=1))
 
         self.assertEqual(response.status_code, 200)
-
-    def testSubmit(self):
-        response = self.client.url_for('submit', feat=2, char_name="test", race="fluid", char_class="Pigmy", strength=1, dexterity=1, constitution=1, intelligence=1, wisdom=1, charisma=1)
-
-        self.assertEqual(response.status_code, 200)
-    
-    def testLogout(self):
-        target_url = url_for('logout')
-        redirect_url = url_for('home', next=target_url)
-        response = self.client.get(target_url)
-
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, redirect_url)
-
-    def testCharacter(self):
-        target_url = url_for('character')
-        redirect_url = url_for('home', next=target_url)
-        response = self.client.get(target_url)
-
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, redirect_url)
-
-    def test_C_Pass(self):
-        target_url = url_for('change_password')
-        redirect_url = url_for('home', next=target_url)
-        response = self.client.get(target_url)
-
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, redirect_url)
     
 class TestModels(TestBase):
     
