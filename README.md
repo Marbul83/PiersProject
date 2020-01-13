@@ -1,5 +1,8 @@
 # DnD
+
 ### Deployed app http://35.234.150.82/
+![Presentation](https://github.com/PCMBarber/PiersProject/blob/master/Media/DnDPresentation.pptx)
+
 
 ## Contents
 * [Installation](#Installation)
@@ -11,8 +14,6 @@
 * [Testing](#Testing)
 * [CI Pipeline & Deployment](#Deployment)
 * [Project Conclusion](#Conclusion)
-
-![Presentation](https://github.com/PCMBarber/PiersProject/blob/master/Media/DnDPresentation.pptx)
 
 <a name="Introduction"></a>
 ## Introduction
