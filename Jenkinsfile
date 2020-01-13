@@ -4,7 +4,9 @@ pipeline{
         stages{
                 stage('--Testing--'){
                         steps{
-                                sh '''pytest --cov'''
+                                sh '''cd /var/lib/jenkins/workspace/DnD_master/frontend 
+                                      pytest --cov
+                                      '''
                         }
                 }
                 stage('--Front End--'){

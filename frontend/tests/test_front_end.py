@@ -3,8 +3,8 @@ import unittest
 from flask import url_for
 from flask_testing import TestCase
 from os import getenv
-from frontend.application import app, db
-from frontend.application.models import user, feat
+from application import app, db
+from application.models import user, feat
 
 
 class TestBase(TestCase):
