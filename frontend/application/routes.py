@@ -10,7 +10,7 @@ import json
 @app.route('/home')
 def home():
     query = user.query.all()
-    return render_template('home.html', title='D&D Gen', users=query)
+    return render_template('home.html', title='CHANGED', users=query)
 
 
 @app.route('/login/<char_name>', methods=['GET','POST'])
