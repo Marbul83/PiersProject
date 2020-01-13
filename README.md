@@ -11,7 +11,7 @@
 * [CI Pipeline & Deployment](#Deployment)
 * [Project Conclusion](#Conclusion)
 
-![alt text](https://github.com/PCMBarber/PiersProject/blob/master/Media/DnDPresentation.pptx)
+![Presentation](https://github.com/PCMBarber/PiersProject/blob/master/Media/DnDPresentation.pptx)
 
 <a name="Introduction"></a>
 ## Introduction
@@ -71,4 +71,4 @@ This Diagram shows the completion of my Jenkins pipeline for performing rolling 
 
 <a name="Conclusion"></a>
 ## Conclusion
-
+Many things changed from my initial plan to deployment, My database structure was cut down, serveral features were cut due to time contraints. In the future there are countless features I would like to implement and my successful deployment of a rolling update as well as being able to tear down my VM and remake it will serve me well in the future.
