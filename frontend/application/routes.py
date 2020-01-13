@@ -72,8 +72,10 @@ def feats(char_name, race, char_class, strength, dexterity, constitution, intell
 def submit(feat, char_name, race, char_class, strength, dexterity, constitution, intelligence, wisdom, charisma):
     dice=requests.get('http://service1:5001/') #{"1":19,"2":16,"3":10,"4":7,"5":5,"6":4}
     background=requests.get('http://service2:5002/') #{"Background":"Noble"}
+    
     skill_dice=dice.json()
     back=background.json()
+
     die1=skill_dice["1"]
     die2=skill_dice["2"]
     die3=skill_dice["3"]
