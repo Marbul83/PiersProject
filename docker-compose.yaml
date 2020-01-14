@@ -21,11 +21,11 @@ services:
           published: 5000
       environment:
         - MYSQL_USER=root
-        - MYSQL_PWD=Dickfox96
-        - MYSQL_IP=35.189.94.24
-        - MYSQL_DB=DnD
-        - MYSQL_SK=fsjgfhbcvhfa
-        - MYSQL_TEST_DB=testDnD
+        - MYSQL_PWD=
+        - MYSQL_IP=
+        - MYSQL_DB=
+        - MYSQL_SK=
+        - MYSQL_TEST_DB=
     
     service1:
       image: jenkins:5000/rand1:build-0
