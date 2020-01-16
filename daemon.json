@@ -1,4 +1,4 @@
 
 (
-        "insecure-regigistries":["ansible-jenk:5000"]
+        "insecure-regigistries":["ansiblejenk:5000"]
 )
