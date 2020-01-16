@@ -1,7 +1,6 @@
 # DnD
 
-### Deployed app http://35.234.150.82/
-### Jenkins http://35.234.148.125:8080
+### Deployed app http://34.89.5.19/
 ![Presentation](https://github.com/PCMBarber/PiersProject/blob/master/Media/DnDPresent.pptx)
 
 
